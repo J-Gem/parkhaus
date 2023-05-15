@@ -1,0 +1,4 @@
+package parkPack;
+
+class Ticket{}
+
