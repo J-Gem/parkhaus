@@ -8,10 +8,10 @@ class Main {
 		Scanner myScanner = new Scanner(System.in);
 		Parkhaus myParkhaus = new Parkhaus();
 		System.out.println("PARKHAUS");
-		input = myScanner.nextInt();
 
 		do {
-
+			System.out.println("[1]PARKHAUS BETRETEN [2]PARKHAUS VERLASEN [0]APP SCHLIESEN");
+			input = myScanner.nextInt();
 		} while (input != 0);
 	}
 }
