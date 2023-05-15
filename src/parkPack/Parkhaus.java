@@ -46,7 +46,8 @@ class Parkhaus {
     }
 
     public Ticket erstelleTicket(){
-        return new Ticket();
+    	Ticket Tmp = new Ticket();
+        return Tmp;
     }
 
 }
