@@ -1,12 +1,10 @@
 package parkPack;
 
-import java.util.ArrayList;
-
 class Parkhaus {
     private int belegteStellenpletze;
-    final int maxStellenPletze = 250;
-    final int mindestParkdauer = 60;
-    private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+    private final int maxStellenPletze = 250;
+    private final int mindestParkdauer = 60;
+    private Ticket[] tickets = new Ticket[250];
 
     Parkhaus() {
     }
@@ -15,25 +13,28 @@ class Parkhaus {
         return belegteStellenpletze;
     }
 
-    public ArrayList<Ticket> getTickets() {
+    public Ticket[] getTickets() {
         return tickets;
     }
+
+    public void setTickets(Ticket[] tickets) {
+        this.tickets = tickets;
+    } // Nicht umbedingt Notwendig evntuell entfernen!
 
     public void setBelegteStellenpletze(int belegteStellenpletze) {
         this.belegteStellenpletze = belegteStellenpletze;
     }
 
-    public void setTickets(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
     public boolean platzFrei() {
-
-        return true;
+        if (belegteStellenpletze < maxStellenPletze) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void einParken() {
-
+        erstelleTicket();
     }
 
     public void ausparken(Ticket ticket) {
@@ -45,8 +46,9 @@ class Parkhaus {
         return true;
     }
 
-    public Ticket erstelleTicket(){
-    	Ticket Tmp = new Ticket();
+    public Ticket erstelleTicket() {
+        Ticket Tmp = new Ticket();
+        tickets[tickets.length] = Tmp;
         return Tmp;
     }
 

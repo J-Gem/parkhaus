@@ -1,5 +1,7 @@
 package parkPack;
 
+import java.util.Random;
+
 public class Ticket {
 	private long id;
 	private boolean istBezahlt;
@@ -40,4 +42,9 @@ public class Ticket {
 		this.endDatum = endDatum;
 	}
 
+	private static long getIdMacAddress() {
+		long currentTimeMillis = System.currentTimeMillis();
+		//Work in Progress
+		return 1;
+	}
 }
