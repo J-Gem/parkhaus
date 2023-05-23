@@ -2,6 +2,7 @@ package parkPack;
 
 import java.util.Scanner;
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -19,7 +20,10 @@ public class Main {
 			switch (auswahl) {
 				case 1:
 					if (myParkhaus.platzFrei() == true) {
-						System.out.println("Sie haben Einfahren gewählt.");
+						System.out.println("Schranke öffrnt sich");
+						myParkhaus.einParken();
+						System.out.println("Schranke schließt sich");
+						
 						
 						break;
 					} else {

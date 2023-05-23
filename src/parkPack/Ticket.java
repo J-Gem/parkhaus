@@ -11,6 +11,8 @@ public class Ticket {
 
 	public Ticket() {
 		myDateHelper = new DateHelper();
+		startDatum = myDateHelper.getActualTimeAsString();
+		id = erstelleID();
 		this.istBezahlt = false;
 	}
 
@@ -42,9 +44,7 @@ public class Ticket {
 		this.endDatum = endDatum;
 	}
 
-	private static long getIdMacAddress() {
-		long currentTimeMillis = System.currentTimeMillis();
-		//Work in Progress
-		return 1;
+	private static long erstelleID() {
+		return System.currentTimeMillis();
 	}
 }
