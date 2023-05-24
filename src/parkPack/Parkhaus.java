@@ -3,6 +3,7 @@ package parkPack;
 import java.util.ArrayList;
 
 class Parkhaus {
+    private Main main;
     private int belegteStellenpletze;
     private final int maxStellenPletze = 250;
     private final int mindestParkdauer = 60;
@@ -37,12 +38,23 @@ class Parkhaus {
 
     public void einParken() {
         this.belegteStellenpletze++;
+
         erstelleTicket();
     }
 
-    public void ausparken(Ticket ticket) {
-        this.belegteStellenpletze--;
-
+    public int ausparken(Long id) {
+        for (int i = 0; i < tickets.size(); i++) {
+            if (tickets.get(i).getId() == id) {
+                if (tickets.get(i).isIstBezahlt() == false) {
+                    ticketLoschen(i);
+                    this.belegteStellenpletze--;
+                    return 0;
+                } else {
+                    return 1;
+                }
+            }
+        }
+        return 2;
     }
 
     public boolean ticketScannen(Ticket ticket) {
@@ -53,12 +65,16 @@ class Parkhaus {
     public Ticket erstelleTicket() {
         Ticket Tmp = new Ticket();
         tickets.add(Tmp);
-        System.out.println("Ihre Parkplatz Nummer lautet:" + tickets.size());
+        System.out.println("Ihre Parkplatz Nummer lautet:" + tickets.size() + "  ID:  " + Tmp.getId());
         return Tmp;
     }
 
     public int getMindestParkdauer() {
         return mindestParkdauer;
+    }
+
+    public void ticketLoschen(int parkplatzNummer) {
+        tickets.remove(parkplatzNummer);
     }
 
 }

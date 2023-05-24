@@ -2,7 +2,6 @@ package parkPack;
 
 import java.util.Scanner;
 
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -20,11 +19,10 @@ public class Main {
 			switch (auswahl) {
 				case 1:
 					if (myParkhaus.platzFrei() == true) {
-						System.out.println("Schranke öffrnt sich");
+						System.out.println("Schranke öffnet sich");
 						myParkhaus.einParken();
 						System.out.println("Schranke schließt sich");
-						
-						
+
 						break;
 					} else {
 						System.out.println("Einfahren nicht möglich, alle Parkplätze sind belägt.");
@@ -35,6 +33,20 @@ public class Main {
 					break;
 				case 3:
 					System.out.println("Sie haben Ausfahren gawählt.");
+					System.out.println("Bitte Scannen Sie Ihr Ticket!");
+					long eingabe = myScanner.nextLong();
+					switch (myParkhaus.ausparken(eingabe)) {
+						case 0:
+							System.out.println("Gute Fahrt!");
+							System.out.println("Belegte Parkplätze:" + myParkhaus.getBelegteStellenpletze());
+							break;
+						case 1:
+							System.out.println("Sie müssen erst bezahlen!");
+							break;
+						case 2:
+							System.out.println("Falsche Karte oder Karte nicht erkannt.");
+							break;
+					}
 					break;
 				case 4:
 					System.out.println("Programm wird Beended!");
