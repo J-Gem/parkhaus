@@ -3,13 +3,18 @@ package parkPack;
 import java.util.ArrayList;
 
 class Parkhaus {
-    private Main main;
+    private KassenAutomat myAutomat;
     private int belegteStellenpletze;
     private final int maxStellenPletze = 250;
     private final int mindestParkdauer = 60;
     private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
     Parkhaus() {
+        KassenAutomat myAutomat = new KassenAutomat(this);
+    }
+
+    public KassenAutomat getKassenAutomat() {
+        return this.myAutomat;
     }
 
     public int getBelegteStellenpletze() {
@@ -57,9 +62,13 @@ class Parkhaus {
         return 2;
     }
 
-    public boolean ticketScannen(Ticket ticket) {
-
-        return true;
+    public Ticket ticketScannen(long id) {
+        for (int i = 0; i < tickets.size(); i++) {
+            if (tickets.get(i).getId() == id) {
+                return tickets.get(i);
+            }
+        }
+        return null;
     }
 
     public Ticket erstelleTicket() {
@@ -70,7 +79,7 @@ class Parkhaus {
     }
 
     public int getMindestParkdauer() {
-        return mindestParkdauer;
+        return this.mindestParkdauer;
     }
 
     public void ticketLoschen(int parkplatzNummer) {

@@ -28,20 +28,24 @@ public class Ticket {
 		this.istBezahlt = istBezahlt;
 	}
 
-	public String getStartDatum() {
-		return startDatum;
-	}
-
 	public void setStartDatum(String startDatum) {
 		this.startDatum = startDatum;
 	}
 
-	public String getEndDatum() {
-		return endDatum;
+	public void setEndDatum(String endDatum) {
+		this.endDatum = myDateHelper.getActualTimeAsString();
 	}
 
-	public void setEndDatum(String endDatum) {
-		this.endDatum = endDatum;
+	public String getStartDatum() {
+		return startDatum;
+	}
+
+	public String getEndDatum() {
+		return this.endDatum;
+	}
+
+	public DateHelper getDateHelper() {
+		return this.myDateHelper;
 	}
 
 	private static long erstelleID() {
