@@ -10,6 +10,7 @@ public class Main {
 		long idEingabe;
 
 		Parkhaus myParkhaus = new Parkhaus();
+		myParkhaus.erstellKassenAutomat();
 		do {
 			System.out.println("\n1) Einfahren");
 			System.out.println("2) Bezahlen");
@@ -33,7 +34,14 @@ public class Main {
 					System.out.println("Sie haben Bezahlen gewählt.\n");
 					System.out.println("Bitte Scannen Sie ihr Ticket!");
 					idEingabe = myScanner.nextLong();
-					System.out.println(myParkhaus.getKassenAutomat().bezahlen(myParkhaus.ticketScannen(idEingabe)));
+					Ticket tmp = (myParkhaus.ticketScannen(idEingabe));
+					if (myParkhaus.getKassenAutomat().bezahlen(tmp)) {
+						tmp.setIstBezahlt(true);
+						System.out.println("Bezahlung Erfolgreich");
+					} else {
+						System.out.println(
+								"Bezahlung konnte nicht durchgeführt werden! \n(Bitte wenden Sie sich an den Support unter www.supportparkhaus.com)");
+					}
 					break;
 				case 3:
 					System.out.println("Sie haben Ausfahren gawählt.");
@@ -41,8 +49,8 @@ public class Main {
 					idEingabe = myScanner.nextLong();
 					switch (myParkhaus.ausparken(idEingabe)) {
 						case 0:
-							System.out.println("Gute Fahrt!");
-							System.out.println("Belegte Parkplätze:" + myParkhaus.getBelegteStellenpletze());
+							System.out.println("Schranke offnet:\nGute Fahrt!\nSchranke Schließt:");
+							System.out.println("Belegte Parkplätze:" + myParkhaus.getBelegteStellenpletze() + "/250");
 							break;
 						case 1:
 							System.out.println("Sie müssen erst bezahlen!");

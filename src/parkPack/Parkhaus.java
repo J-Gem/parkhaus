@@ -10,7 +10,10 @@ class Parkhaus {
     private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 
     Parkhaus() {
-        KassenAutomat myAutomat = new KassenAutomat(this);
+    }
+
+    public void erstellKassenAutomat() {
+        myAutomat = new KassenAutomat();
     }
 
     public KassenAutomat getKassenAutomat() {
@@ -50,7 +53,7 @@ class Parkhaus {
     public int ausparken(Long id) {
         for (int i = 0; i < tickets.size(); i++) {
             if (tickets.get(i).getId() == id) {
-                if (tickets.get(i).isIstBezahlt() == false) {
+                if (tickets.get(i).isIstBezahlt() == true) {
                     ticketLoschen(i);
                     this.belegteStellenpletze--;
                     return 0;
@@ -85,5 +88,4 @@ class Parkhaus {
     public void ticketLoschen(int parkplatzNummer) {
         tickets.remove(parkplatzNummer);
     }
-
 }
