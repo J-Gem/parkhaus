@@ -34,15 +34,26 @@ public class Main {
 					System.out.println("Sie haben Bezahlen gewählt.\n");
 					System.out.println("Bitte Scannen Sie ihr Ticket!");
 					idEingabe = myScanner.nextLong();
-					Ticket tmp = (myParkhaus.ticketScannen(idEingabe));
-					if (myParkhaus.getKassenAutomat().bezahlen(tmp)) {
-						tmp.setIstBezahlt(true);
-						System.out.println("Bezahlung Erfolgreich");
+					if (myParkhaus.ticketScannen(idEingabe) != null) {
+						Ticket tmp = (myParkhaus.ticketScannen(idEingabe));
+						if (tmp.isIstBezahlt() == false) {
+							if (myParkhaus.getKassenAutomat().bezahlen(tmp)) {
+								tmp.setIstBezahlt(true);
+								System.out.println("Bezahlung Erfolgreich");
+							} else {
+								System.out.println(
+										"Bezahlung konnte nicht durchgeführt werden! \n(Bitte wenden Sie sich an den Support unter www.supportparkhaus.com)");
+							}
+							break;
+						} else {
+							System.out.println("Ist bereits Bezahlt");
+							break;
+						}
 					} else {
-						System.out.println(
-								"Bezahlung konnte nicht durchgeführt werden! \n(Bitte wenden Sie sich an den Support unter www.supportparkhaus.com)");
+						System.out.println("Falsche ID bitte eneut versuschen!");
+						break;
 					}
-					break;
+
 				case 3:
 					System.out.println("Sie haben Ausfahren gawählt.");
 					System.out.println("Bitte Scannen Sie Ihr Ticket!");
@@ -62,6 +73,7 @@ public class Main {
 					break;
 				case 4:
 					System.out.println("Programm wird Beended!");
+					myScanner.close();
 					break;
 			}
 		} while (auswahl != 4);

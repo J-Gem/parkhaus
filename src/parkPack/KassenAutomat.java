@@ -7,7 +7,6 @@ class KassenAutomat {
     private float preis;
     final private static String[] munzenName = { "2-Euro", "1-Euro", "50-Cent" };
     final private static float[] munzenWert = { 2.00f, 1.00f, 0.50f };
-    private static int[] munzenAnzahl = { 0, 0, 0 };
     static Scanner myScanner = new Scanner(System.in);
 
     KassenAutomat() {
@@ -32,7 +31,6 @@ class KassenAutomat {
             preis = (0.5f * (int) ((parkdauer - 60) / 30)) + 2.0f;
         }
         System.out.println("Preis:" + preis + "€");
-        // geldeinwerfen(preis);
         return preis;
     }
 
